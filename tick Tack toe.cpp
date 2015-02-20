@@ -124,8 +124,11 @@ int main(){
     char start;
     cout<<"Welcome to the GAME!!!\n\n";
     playing:
+    youfool:
     cout<<"Who starts? (X for Comp and O for Player):\n";
     cin>>start;
+    if(start != 'X' && start != 'O')
+        goto youfool;
     arena *game = new arena();
     int won=0;
     if(start == 'X'){               //Computer starts with a random position.
@@ -141,7 +144,7 @@ int main(){
     while(game->isWon()=='.' && game->turns<9){     //Play game until 9 moves or an early win.
         int x,y,chance=-1;
         repeat:
-        cout<<"\nP1 enter your move:\n";    //Player enters his move
+        cout<<"\nP1 enter your move (co-ordinates [0-2][0-2]) :\n";    //Player enters his move
         cin>>x>>y;
 
         if(!game->makeMove(x,y,'O'))        //Player's move is executed
