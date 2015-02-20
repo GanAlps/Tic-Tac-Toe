@@ -34,10 +34,11 @@ public :
         return '.';         //not yet won
     }
     void printBoard(){      //print current state of the board
+        cout<<endl;
         for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++)
-                cout<<this->board[i][j];
-            cout<<endl;
+            for(int j=0;j<2;j++)
+                cout<<this->board[i][j]<<"|";
+            cout<<this->board[i][2]<<endl;
         }
         return;
     }
