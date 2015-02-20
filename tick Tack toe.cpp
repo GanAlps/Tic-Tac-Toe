@@ -42,7 +42,7 @@ public :
         return;
     }
     int makeMove(int i,int j,char c){       //execute the move.
-        if(this->board[i][j] != '_'){
+        if(this->board[i][j] != '_' || i<0 || i>2 || j<0 || j>2){
             cout<<"invalid move, try again!";   //check for invalid moves.
             return 0;
         }
@@ -123,9 +123,11 @@ public :
 int main(){
     char start;
     cout<<"Welcome to the GAME!!!\n\n";
+    playing:
     cout<<"Who starts? (X for Comp and O for Player):\n";
     cin>>start;
     arena *game = new arena();
+    int won=0;
     if(start == 'X'){               //Computer starts with a random position.
         int x,y;
         x = rand();
@@ -158,13 +160,18 @@ int main(){
     //Print the result of the match.
     if(game->isWon() == 'X'){
         cout<<"\n1Computer Wins\n";
-        return 0;
+        won = 1;
     }
     if(game->isWon() == 'O'){
         cout<<"\n2Player Wins\n";
-        return 0;
+        won = 1;
     }
-    if(game->turns>=9)
+    if(game->turns>=9 && won==0)
         cout<<"\nDRAW!!";
+    char again;
+    cout<<"\n\nWanna play again? (Y/N):";
+    cin>>again;
+    if(again == 'Y' || again == 'y')
+        goto playing;
     return 0;
 }
